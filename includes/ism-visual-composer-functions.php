@@ -1,8 +1,8 @@
 <?php
 
-add_action('vc_before_init', 'ism_offers_vc_shortcode');
+add_action('vc_before_init', 'ism_reviews_vc_shortcode');
 
-function ism_offers_vc_shortcode($shortcodes)
+function ism_reviews_vc_shortcode($shortcodes)
 {
 //        -'offset'                  => 0,
 //        -'limit'                   => -1,
@@ -20,17 +20,17 @@ function ism_offers_vc_shortcode($shortcodes)
 
 
     vc_map([
-        'name'        => "Lista offerte",
-        'base'        => 'ism_offers',
+        'name'        => "Lista recensioni",
+        'base'        => 'ism_reviews',
         'category'    => "InternetSm",
-        'description' => "Lista delle offerte",
+        'description' => "Lista delle recensioni",
         'params'      => [
             [
                 'type'        => 'textfield',
                 'heading'     => 'Offset',
                 'param_name'  => 'offset',
                 'value'       => 0,
-                'description' => 'Numero di offerte da skippare'
+                'description' => 'Numero di recensioni da skippare'
             ],
             [
                 'type'        => 'textfield',
