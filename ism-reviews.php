@@ -17,6 +17,7 @@ require_once "includes/ism-post-type-register-function.php";
 require_once "includes/ism-reviews-metabox-function.php";
 require_once "includes/ism-filters-functions.php";
 require_once "includes/ism-reviews-columns-functions.php";
+require_once "includes/ism-shortcodes-functions.php";
 
 if (!function_exists("ism_reviews_get_template")) {
 
