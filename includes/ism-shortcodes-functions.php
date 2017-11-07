@@ -39,7 +39,7 @@ function ism_shortcode_reviews($atts, $content = "")
 //        'orderby'        => $atts['order_by'],
 //        'order'          => $atts['order'],
         'offset'         => $atts['offset'],
-        'post_type'      => 'ism_offer',
+        'post_type'      => 'ism_reviews',
     ];
 
     if (!is_null($atts['category'])) {
