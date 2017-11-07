@@ -1,0 +1,25 @@
+{
+  "name": "ism_reviews",
+  "authors": [
+    "Daniele Gasperoni <daniele.gasperoni@internetsm.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "jquery-ui": "jqueryui#^1.12.1",
+    "font-awesome": "fontawesome#^4.7.0",
+    "slick-carousel": "^1.8.1"
+  }
+}
