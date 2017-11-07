@@ -6,9 +6,9 @@
  * Time: 10.23
  */
 
-add_shortcode('ism_offers', 'ism_shortcode_offers');
+add_shortcode('ism_reviews', 'ism_shortcode_reviews');
 
-function ism_shortcode_offers($atts, $content = "")
+function ism_shortcode_reviews($atts, $content = "")
 {
     if (!is_array($atts)) {
         $atts = [];
@@ -40,14 +40,6 @@ function ism_shortcode_offers($atts, $content = "")
 //        'order'          => $atts['order'],
         'offset'         => $atts['offset'],
         'post_type'      => 'ism_offer',
-        'meta_query'     => array(
-            array(
-                'key'     => 'ism_offers_date_departure',
-                'value'   => strtotime("now"),
-                'compare' => '>=',
-                'type'    => 'NUMERIC'
-            )
-        ),
     ];
 
     if (!is_null($atts['category'])) {
@@ -79,43 +71,34 @@ function ism_shortcode_offers($atts, $content = "")
 
     $posts = $query->get_posts();
 
-    $offers = [];
+    $reviews = [];
 
     foreach ($posts as $post) {
 
-        $price = get_post_meta($post->ID, 'ism_offers_price', true);
+        $date = get_post_meta($post->ID, 'ism_reviews_date', true);
 
-        $priceType = get_post_meta($post->ID, 'ism_offers_price_type', true);
+        $author = get_post_meta($post->ID, 'ism_reviews_author', true);
 
-        $treatment = get_post_meta($post->ID, 'ism_offers_treatment', true);
+        $country = get_post_meta($post->ID, 'ism_reviews_country', true);
 
-        $arrivalDate = get_post_meta($post->ID, 'ism_offers_date_arrival', true);
-
-        $departureDate = get_post_meta($post->ID, 'ism_offers_date_departure', true);
-
-        $image = get_the_post_thumbnail_url($post->ID, $atts['thumbnail_size']);
-
-        $offer = [
+        $review = [
             'title'          => $post->post_title,
             'description'    => $post->post_content,
-            'price'          => $price,
-            'price_type'     => $priceType,
-            'treatment'      => $treatment,
-            'arrival_date'   => $arrivalDate,
-            'departure_date' => $departureDate,
-            'image'          => $image,
+            'date'          => $date,
+            'author'     => $author,
+            'country'      => $country,
         ];
 
-        $offers[] = $offer;
+        $reviews[] = $review;
     }
 
     if (!$atts['is_carousel']) {
-        return ism_get_template('listing/offers', [
-            'offers' => $offers
+        return ism_reviews_get_template('listing/reviews', [
+            'reviews' => $reviews
         ]);
     } else {
-        return ism_get_template('carousel/offers', [
-            'offers'   => $offers,
+        return ism_reviews_get_template('carousel/reviews', [
+            'reviews'   => $reviews,
             'carousel' => [
                 'autoplay'       => $atts['carousel_autoplay'],
                 'columns'        => $atts['carousel_columns'],
