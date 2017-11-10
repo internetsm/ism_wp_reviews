@@ -41,7 +41,7 @@ if (!function_exists("ism_reviews_get_template")) {
         $templatePathSelected = null;
         $templatePaths = [
             __DIR__ . "/templates/{$slug}.php",
-            get_stylesheet_directory() . "/{$pluginSlug}/{$slug}.php",
+            get_stylesheet_directory() . "/ism_reviews/{$slug}.php",
         ];
         foreach ($templatePaths as $templatePath) {
             if (file_exists($templatePath)) {
