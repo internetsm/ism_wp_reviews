@@ -18,7 +18,8 @@ function ism_reviews_metabox_save()
     $fields = [
         "ism_reviews_author",
         "ism_reviews_country",
-        "ism_reviews_date"
+        "ism_reviews_date",
+        "ism_reviews_stars"
     ];
 
     foreach ($fields as $field) {
@@ -53,12 +54,14 @@ function ism_reviews_metabox_template()
     $ism_reviews_country = get_post_meta($post->ID, 'ism_reviews_country', true);
     $ism_reviews_date = get_post_meta($post->ID, 'ism_reviews_date', true);
     $ism_reviews_date = apply_filters("ism_reviews_print_date", $ism_reviews_date);
+    $ism_reviews_stars = get_post_meta($post->ID, 'ism_reviews_stars', true);
 
     echo ism_reviews_get_template("metabox/metabox", [
         'ism_reviews_data' => [
             'author' => $ism_reviews_author,
             'country' => $ism_reviews_country,
             'date' => $ism_reviews_date,
+            'stars' => $ism_reviews_stars,
         ]
     ]);
 }

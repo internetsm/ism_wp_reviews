@@ -14,9 +14,9 @@
  */
 
 require_once "includes/ism-post-type-register-function.php";
-require_once "includes/ism-reviews-metabox-function.php";
+require_once "includes/ism-metabox-function.php";
 require_once "includes/ism-filters-functions.php";
-require_once "includes/ism-reviews-columns-functions.php";
+require_once "includes/ism-columns-functions.php";
 require_once "includes/ism-shortcodes-functions.php";
 require_once "includes/ism-visual-composer-functions.php";
 

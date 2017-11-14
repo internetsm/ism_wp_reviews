@@ -38,3 +38,15 @@
     </div>
 </div>
 <br/>
+
+<div>
+    <div>
+        <label><strong>Stelle</strong></label>
+    </div>
+    <div>
+        <input value="<?php echo $ism_reviews_data['stars']; ?>" class="stars" id="stars"
+               type="text"
+               name="ism_reviews_stars"/>
+    </div>
+</div>
+<br/>

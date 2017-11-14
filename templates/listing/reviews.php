@@ -11,9 +11,18 @@ foreach ($reviews as $review){
     ?>
 
     <div class="review">
-        <img class="review-image" src="<?php echo $review['image']; ?>"/>
+        <?php
+        $stars = $review['stars'];
+        $starsStamp = "";
+        for($i = 0s; $i < $stars; $i++){
+            $starsStamp .= "<span class=\"vc_icon_element-icon fa fa-star\">";
+        }
+        ?>
         <h2 class="review-title"><?php echo $review['title']; ?></h2>
-        <div class="review-content"><?php echo substr($review['description'], 0, 100); ?></div>
+        <div class="review-content"><?php echo $starsStamp; ?></div>
+        <div class="review-content"><?php echo $review['description']; ?></div>
+        <div class="review-author"><?php echo $review['author']; ?></div>
+        <div class="review-location"><?php echo $review['country']; ?></div>
     </div>
 
     <?php

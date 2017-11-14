@@ -6,26 +6,22 @@
  * Time: 11.43
  */
 
-add_filter('manage_ism_offer_posts_columns', 'ism_offers_columns');
+add_filter('manage_ism_reviews_posts_columns', 'ism_reviews_columns');
 
-function ism_offers_columns($columns)
+function ism_reviews_columns($columns)
 {
 
-    // name="ism_offers_price"
-    // name="ism_offers_price_type"
-    // name="ism_offers_price_type"
-    // name="ism_offers_treatment">
-    // name="ism_offers_date_arrival"
-    // name="ism_offers_date_departure"
+    // name="ism_reviews_price"
+    // name="ism_reviews_price_type"
+    // name="ism_reviews_price_type"
+    // name="ism_reviews_treatment">
+    // name="ism_reviews_date_arrival"
+    // name="ism_reviews_date_departure"
 
     $new_columns = array(
-        'ism_offers_price'          => "Prezzo",
-        'ism_offers_price_type'     => "Tipologia prezzo",
-        'ism_offers_treatment'      => "Trattamento",
-        'ism_offers_date_arrival'   => "Data arrivo",
-        'ism_offers_date_departure' => "Data partenza",
-        'ism_offers_categories'     => "Categorie",
-        'ism_offers_thumbnail'      => "Immagine",
+        'ism_reviews_author'          => "Autore",
+        'ism_reviews_country'     => "Paese",
+        'ism_reviews_date'      => "Data",
     );
     unset($columns['author']);
     unset($columns['comments']);
@@ -34,39 +30,16 @@ function ism_offers_columns($columns)
     return array_merge($columns, $new_columns);
 }
 
-add_action('manage_ism_offer_posts_custom_column', 'ism_offers_manage_columns', 10, 2);
+add_action('manage_ism_reviews_posts_custom_column', 'ism_reviews_manage_columns', 10, 2);
 
-function ism_offers_manage_columns($column, $post_id)
+function ism_reviews_manage_columns($column, $post_id)
 {
 
-    $translations = [
-        "price_night"       => "Prezzo per notte",
-        "price_flat"        => "Prezzo forfettario",
-        "all_inclusive"     => "All Inclusive",
-        "fullboard"         => "Pensione completa",
-        "halfboard"         => "Mezza pensione",
-        "bed_and_breakfast" => "Bed & Breakfast",
-    ];
-
-    $dateDeparture = get_post_meta($post_id, 'ism_offers_date_departure', true);
-    $valid = ($dateDeparture >= strtotime("now"));
-    $color = ($valid ? "green" : "red");
-
-    $categories = array_map(function ($term){
-        return $term->name;
-    }, wp_get_post_terms($post_id, 'ism_offers_category'));
 
     $data = [
-        'ism_offers_price'          => sprintf("%s €", get_post_meta($post_id, 'ism_offers_price', true)),
-        'ism_offers_price_type'     => $translations[get_post_meta($post_id, 'ism_offers_price_type', true)],
-        'ism_offers_treatment'      => $translations[get_post_meta($post_id, 'ism_offers_treatment', true)],
-        'ism_offers_date_arrival'   => apply_filters("ism_offers_print_date", get_post_meta($post_id, 'ism_offers_date_arrival', true)),
-        'ism_offers_date_departure' => sprintf("<span style='color: %s;'>%s</span>",
-            $color,
-            apply_filters("ism_offers_print_date", $dateDeparture)
-        ),
-        'ism_offers_categories'     => implode(", ", $categories),
-        'ism_offers_thumbnail'      => sprintf("<img src='%s'/>", get_the_post_thumbnail_url($post_id, 'thumbnail')),
+        'ism_reviews_author'     => get_post_meta($post_id, 'ism_reviews_author', true),
+        'ism_reviews_country'      => get_post_meta($post_id, 'ism_reviews_country', true),
+        'ism_reviews_date'   => apply_filters("ism_reviews_print_date", get_post_meta($post_id, 'ism_reviews_date', true))
     ];
 
     echo $data[$column];
