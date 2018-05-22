@@ -13,47 +13,16 @@
  * Time: 10.54
  */
 
-require_once "includes/ism-post-type-register-function.php";
-require_once "includes/ism-metabox-function.php";
-require_once "includes/ism-filters-functions.php";
-require_once "includes/ism-columns-functions.php";
-require_once "includes/ism-shortcodes-functions.php";
-require_once "includes/ism-visual-composer-functions.php";
+define("ISMRE_ROOT_DIR", __DIR__);
+define("ISMRE_ROOT_FILE", __FILE__);
+define("ISMRE_ROOT_URL", plugin_dir_url(ISMRE_ROOT_FILE));
+define("ISMRE_TEMPLATE_DIR", ISMRE_ROOT_DIR . DIRECTORY_SEPARATOR . "templates");
+define("ISMRE_ASSETS_URL", ISMRE_ROOT_URL . "/" . "assets");
 
-if (!function_exists("ism_reviews_get_template")) {
-
-    /**
-     * Get template
-     *
-     * @param $slug
-     * @param $args
-     * @return string
-     * @throws Exception
-     */
-    function ism_reviews_get_template($slug, $args = [])
-    {
-        $pluginData = get_plugin_data(__FILE__);
-
-        $pluginSlug = $pluginData['Name'];
-        $pluginSlug = str_replace(" ", "_", $pluginSlug);
-        $pluginSlug = strtolower($pluginSlug);
-
-        $templatePathSelected = null;
-        $templatePaths = [
-            __DIR__ . "/templates/{$slug}.php",
-            get_stylesheet_directory() . "/ism_reviews/{$slug}.php",
-        ];
-        foreach ($templatePaths as $templatePath) {
-            if (file_exists($templatePath)) {
-                $templatePathSelected = $templatePath;
-            }
-        }
-        if (!$templatePathSelected) {
-            throw new Exception("ism_reviews template not found");
-        }
-        ob_start();
-        extract($args);
-        include $templatePathSelected;
-        return ob_get_clean();
-    }
-}
+require_once "includes/template-functions.php";
+require_once "includes/post-type-functions.php";
+require_once "includes/metabox-functions.php";
+require_once "includes/filters-functions.php";
+require_once "includes/columns-functions.php";
+require_once "includes/shortcodes-functions.php";
+require_once "includes/visual-composer-functions.php";
