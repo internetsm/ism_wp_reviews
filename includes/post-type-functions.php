@@ -34,7 +34,7 @@ function ism_reviews_custom_post_type_declaration()
     $args = array(
         'labels'             => $labels,
         'description'        => __('Description.', 'ism-recensioni'),
-        'menu_icon'           => 'dashicons-format-status',
+        'menu_icon'          => 'dashicons-format-status',
         'public'             => true,
         'publicly_queryable' => true,
         'show_ui'            => true,
@@ -42,7 +42,7 @@ function ism_reviews_custom_post_type_declaration()
         'query_var'          => true,
         'rewrite'            => array('slug' => __('reviews', 'ism-recensioni')),
         'capability_type'    => 'post',
-        'has_archive'        => true,
+        'has_archive'        => apply_filters('ism_reviews_has_archive', true),
         'hierarchical'       => false,
         'menu_position'      => null,
         'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
