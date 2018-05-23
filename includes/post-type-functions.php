@@ -42,10 +42,13 @@ function ism_reviews_custom_post_type_declaration()
         'query_var'          => true,
         'rewrite'            => array('slug' => __('reviews', 'ism-recensioni')),
         'capability_type'    => 'post',
-        'has_archive'        => apply_filters('ism_reviews_has_archive', true),
+        'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => null,
         'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
     );
+
+    $args = apply_filters('ism_reviews_post_type_options', $args);
+
     register_post_type('ism_reviews', $args);
 }
