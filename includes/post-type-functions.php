@@ -42,7 +42,7 @@ function ism_reviews_custom_post_type_declaration()
         'query_var'          => true,
         'rewrite'            => array('slug' => __('reviews', 'ism-recensioni')),
         'capability_type'    => 'post',
-        'has_archive'        => true,
+        'has_archive'        => false,
         'hierarchical'       => false,
         'menu_position'      => null,
         'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
