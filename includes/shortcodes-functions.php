@@ -50,7 +50,7 @@ function ism_shortcode_reviews($atts, $content = "")
 
         if (!is_array($atts['category'])) {
             $atts['category'] = [
-                $atts['category']
+                $atts['category'],
             ];
         }
 
@@ -59,9 +59,9 @@ function ism_shortcode_reviews($atts, $content = "")
                 'taxonomy' => 'ism_offers_category',
                 'field'    => is_int($categoryValue) ? 'id' : 'slug',
                 'terms'    => [
-                    $categoryValue
+                    $categoryValue,
                 ],
-                'operator' => 'IN'
+                'operator' => 'IN',
             ];
         }
         $queryArguments['tax_query'] = $taxQuery;
@@ -84,12 +84,13 @@ function ism_shortcode_reviews($atts, $content = "")
         $stars = get_post_meta($post->ID, 'ism_reviews_stars', true);
 
         $review = [
-            'title'          => $post->post_title,
-            'description'    => $post->post_content,
-            'date'          => $date,
-            'author'     => $author,
-            'country'      => $country,
-            'stars'         => $stars,
+            'title'       => $post->post_title,
+            'description' => $post->post_content,
+            'date'        => $date,
+            'author'      => $author,
+            'country'     => $country,
+            'stars'       => $stars,
+            'url'         => get_permalink($post->ID),
         ];
 
         $reviews[] = $review;
@@ -97,11 +98,11 @@ function ism_shortcode_reviews($atts, $content = "")
 
     if (!$atts['is_carousel']) {
         return ism_reviews_get_template('listing/reviews', [
-            'reviews' => $reviews
+            'reviews' => $reviews,
         ]);
     } else {
         return ism_reviews_get_template('carousel/reviews', [
-            'reviews'   => $reviews,
+            'reviews'  => $reviews,
             'carousel' => [
                 'autoplay'       => $atts['carousel_autoplay'],
                 'columns'        => $atts['carousel_columns'],
@@ -109,7 +110,7 @@ function ism_shortcode_reviews($atts, $content = "")
                 'dots'           => $atts['carousel_dots'],
                 'arrows'         => $atts['carousel_arrows'],
                 'infinite'       => $atts['carousel_infinite'],
-            ]
+            ],
         ]);
     }
 }
