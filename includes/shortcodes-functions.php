@@ -84,6 +84,7 @@ function ism_shortcode_reviews($atts, $content = "")
         $stars = get_post_meta($post->ID, 'ism_reviews_stars', true);
 
         $review = [
+            'id'          => $post->ID,
             'title'       => $post->post_title,
             'description' => $post->post_content,
             'date'        => $date,
