@@ -76,6 +76,7 @@ function ism_reviews_vc_shortcode($shortcodes)
                 'value'       => [
                     1, 2, 3, 4,
                 ],
+                'std'         => 3,
                 'description' => '',
                 'dependency'  => [
                     'element'   => 'is_carousel',
@@ -89,6 +90,7 @@ function ism_reviews_vc_shortcode($shortcodes)
                 'value'       => [
                     1, 2, 3, 4,
                 ],
+                'std'         => 2,
                 'description' => '',
                 'dependency'  => [
                     'element'   => 'is_carousel',
@@ -102,6 +104,7 @@ function ism_reviews_vc_shortcode($shortcodes)
                 'value'       => [
                     1, 2, 3, 4,
                 ],
+                'std'         => 1,
                 'description' => '',
                 'dependency'  => [
                     'element'   => 'is_carousel',
@@ -115,6 +118,7 @@ function ism_reviews_vc_shortcode($shortcodes)
                 'value'       => [
                     1, 2, 3, 4,
                 ],
+                'std'         => 1,
                 'description' => '',
                 'dependency'  => [
                     'element'   => 'is_carousel',
