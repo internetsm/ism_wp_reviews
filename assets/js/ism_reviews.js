@@ -1,6 +1,6 @@
 var ism = window.ism || {};
 
-ism.initDatepickers = function () {
+ism.initReviewsDatepickers = function () {
 
     jQuery("#datepicker-arrival").datepicker({
         dateFormat: 'dd-mm-yy',
@@ -11,7 +11,7 @@ ism.initDatepickers = function () {
     });
 };
 
-ism.initCarousels = function () {
+ism.initReviewsCarousels = function () {
     jQuery(".slick-carousel").each(function () {
         var carousel = jQuery(this);
         var columns = carousel.data("columns");
@@ -48,6 +48,6 @@ ism.initCarousels = function () {
 };
 
 jQuery(function () {
-    ism.initDatepickers();
-    ism.initCarousels();
+    ism.initReviewsDatepickers();
+    ism.initReviewsCarousels();
 });
